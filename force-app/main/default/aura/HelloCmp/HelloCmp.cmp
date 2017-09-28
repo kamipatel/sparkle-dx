@@ -1,3 +1,4 @@
-<aura:component>
-Hello World!
-</aura:component>	
+<aura:component >
+Hello OMNI!
+    Updated the component
+</aura:component>
