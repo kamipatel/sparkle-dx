@@ -31,20 +31,20 @@ node {
        if (robj.status == 0) { print 'org creation success: ' + robj.result.username }
        SFDC_USERNAME=robj.result.username
        robj = null
+       
+    }
         
-      /*
-        def jsonSlurper = new JsonSlurperClassic()
-       def robj = jsonSlurper.parseText(rmsg)
-       if (robj.status != "ok") { error 'org creation failed: ' + robj.message }
-       SFDC_USERNAME=robj.username
-       robj = null
-*/
-
-
+     stage('Push To Test Org') {
+    
+        rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:source:push --targetusername ${SFDC_USERNAME}"
+       if (rc != 0) {
+     	error 'push all failed'
+       }else{
+           println "***Push success****"
+       }
+       
     }
-    stage('Push source to Scratch Org') {
-        printf "In push source to scratch org"
-    }
+        
     
     }
 }
