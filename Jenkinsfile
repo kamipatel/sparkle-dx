@@ -25,8 +25,9 @@ node {
        println rmsg
         
        def robj = jsonSlurper.parseText(rmsg)
-       if (robj.status != 0) { error 'org creation failed: ' + robj.message }
-        if (robj.status == 0) { print 'org creation success: ' + robj.result.username }
+        println robj
+       //if (robj.status != 0) { error 'org creation failed: ' + robj.message }
+       //if (robj.status == 0) { print 'org creation success: ' + robj.result.username }
         
       /*
         def jsonSlurper = new JsonSlurperClassic()
