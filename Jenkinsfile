@@ -29,6 +29,8 @@ node {
         println robj
        if (robj.status != 0) { error 'org creation failed: ' + robj.message }
        if (robj.status == 0) { print 'org creation success: ' + robj.result.username }
+       SFDC_USERNAME=robj.result.username
+       robj = null
         
       /*
         def jsonSlurper = new JsonSlurperClassic()
