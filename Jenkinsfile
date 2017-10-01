@@ -13,7 +13,7 @@ node {
    }
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
     stage('Create Scratch Org') {
-        printf "In create scratch org"
+        println "In create scratch org"
         //rc = sh returnStatus: true, script: "${toolbelt}/heroku force:org:authorize -i ${CONNECTED_APP_CONSUMER_KEY} -u ${HUB_ORG} -f ${jwt_key_file} -y debug"
 
         //rc = sh returnStatus: true, script: "${toolbelt}/heroku force:org:authorize -i ${CONNECTED_APP_CONSUMER_KEY} -u ${HUB_ORG} -f ${jwt_key_file} -y debug"		
@@ -22,7 +22,7 @@ node {
 
         // need to pull out assigned username
        rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:org:create --definitionfile config/project-scratch-def.json --setdefaultusername"
-       printf rmsg
+       println rmsg
         
       /*
         def jsonSlurper = new JsonSlurperClassic()
