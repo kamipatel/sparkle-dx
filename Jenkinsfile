@@ -9,8 +9,7 @@ node {
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       printf "befote git command"
-      git 'https://github.com/rreboucas/sparkle-dx.git'
-      
+     checkout scm
    }
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
     stage('Create Scratch Org') {
