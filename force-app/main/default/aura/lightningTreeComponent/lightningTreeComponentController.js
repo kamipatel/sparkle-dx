@@ -1,60 +1,39 @@
 ({
     doInit: function (cmp, event, helper) {
-        var itemsAction = cmp.get("c.getTree");
-        itemsAction.setParams({
-            "parent": cmp.get("v.parentObj"),
-            "child": cmp.get("v.childObj"),
-            "relationship" : cmp.get("v.relationship")
+        var parentAction = cmp.get("c.getParent");
+        var childAction = cmp.get("c.getChild");
+
+        parentAction.setParams({
+            "parent": "Account"
         });
 
-        itemsAction.setCallback(this, function(response){
-            cmp.set("v.items", response.getReturnValue());
-            console.log('Hello');
-            console.log(response.getReturnValue());
-        });
-        $A.enqueueAction(itemsAction);
+        parentAction.setCallback(this, function(response){
+            cmp.set("v.parentObj", response.getReturnValue());
+
+            //In order to guarantee parent is first, 
+            //I've put child inside.
+            //Doesn't seem right?
+            childAction.setParams({
+                "child": cmp.get("v.childObjStr"),
+                "parents" : cmp.get("v.parentObj"),
+                "relationship" : cmp.get("v.relationship")
+            });
     
-        /*var items = [{
-            "label": "Western Sales Director",
-            "name": "1",
-            "expanded": true,
-            "items": [{
-                "label": "Western Sales Manager",
-                "name": "2",
-                "expanded": true,
-                "items" :[{
-                    "label": "CA Sales Rep",
-                    "name": "3",
-                    "expanded": true,
-                    "items" : []
-                },{
-                    "label": "OR Sales Rep",
-                    "name": "4",
-                    "expanded": true,
-                    "items" : []
-                }]
-            }]
-        }, {
-            "label": "Eastern Sales Director",
-            "name": "5",
-            "expanded": false,
-            "items": [{
-                "label": "Easter Sales Manager",
-                "name": "6",
-                "expanded": true,
-                "items" :[{
-                    "label": "NY Sales Rep",
-                    "name": "7",
-                    "expanded": true,
-                    "items" : []
-                }, {
-                    "label": "MA Sales Rep",
-                    "name": "8",
-                    "expanded": true,
-                    "items" : []
-                }]
-            }]
-        }];
-        cmp.set('v.items', items);*/
+            childAction.setCallback(this, function(response){
+                cmp.set("v.items", response.getReturnValue());
+                console.log(response.getReturnValue());
+            });
+            $A.enqueueAction(childAction);
+
+        });
+        $A.enqueueAction(parentAction);
     },     
+
+    handleSelect: function (cmp, event, helper) {
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": "/" + event.getParam('name')
+        });
+        urlEvent.fire();
+    }
 })
