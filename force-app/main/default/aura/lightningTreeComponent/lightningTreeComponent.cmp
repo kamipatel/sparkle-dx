@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="lightningTreeComponentController">    
+    <aura:attribute name="items" type="Object"/>
+    <aura:attribute name="parentObjStr" type="String"/>
+    <aura:attribute name="childObjStr" type="String" />
+    <aura:attribute name="relationship" type="String" />
+    <aura:attribute name="parentObj" type="Object"/>
+    <aura:attribute name="childObj" type="Object" />
+
+    <aura:attribute name="header" type="String" access="Global" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div class="background-color: white;">
+        <lightning:tree items="{!v.items}" header="{!v.header}" onselect="{!c.handleSelect}"/>
+    </div>
+</aura:component>
+

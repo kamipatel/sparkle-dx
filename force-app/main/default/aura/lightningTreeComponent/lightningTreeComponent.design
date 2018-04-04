@@ -1,0 +1,7 @@
+<design:component >
+    <design:attribute name="header" label="Tree Header"/>   
+    <design:attribute name="parentObjStr" label="Parent Object API name"/>   
+    <design:attribute name="childObjStr" label="Child Object API name"/>   
+    <design:attribute name="relationship" label="Relationship API Name" />
+    
+</design:component>

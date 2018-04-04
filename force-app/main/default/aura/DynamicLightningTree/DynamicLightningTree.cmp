@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="header" type="String"/>   
+    <aura:attribute name="parentObjStr" type="String"/>   
+    <aura:attribute name="childObjStr" type="String"/>   
+    <aura:attribute name="relationship" type="String"/>
+    <aura:attribute name="compToggle" type="boolean" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:input name="toggle"
+        label=""
+        type="toggle"
+        checked="{!v.compToggle}"
+        onchange="{!c.handleToggle}"
+        messageToggleActive="Vertical Navigation Tree"
+        messageToggleInactive="Lightning Tree">
+    </lightning:input>
+
+    <ui:outputText value="{!v.header}" />
+    {!v.body}
+
+</aura:component>	

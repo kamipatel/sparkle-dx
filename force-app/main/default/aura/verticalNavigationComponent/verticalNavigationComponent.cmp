@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="lightningTreeComponentController">
+    <aura:attribute name="items" type="Object"/>
+    <aura:attribute name="parentObjStr" type="String"/>
+    <aura:attribute name="childObjStr" type="String" />
+    <aura:attribute name="relationship" type="String" />
+    <aura:attribute name="parentObj" type="Object"/>
+    <aura:attribute name="childObj" type="Object" />
+    <aura:attribute name="onClickBehaviour" type="String" />
+    <aura:attribute name="header" type="String"  />
+    
+    <aura:handler name="init" value="{!this }" action="{! c.doInit }" />
+    
+    <ui:outputText value="{!v.header}" />
+    <lightning:verticalNavigation onselect="{!c.handleSelect}"> 
+            <aura:iteration items="{!v.items }" var="section">
+                <lightning:verticalNavigationSection label="{! section.label }" >
+                    <aura:iteration items="{!section.items }" var="item">
+                        <aura:if isTrue="{! !empty(item.icon) }">
+                            <lightning:verticalNavigationItemIcon label="{! item.label }" name="{! item.name }" iconName="{! item.icon }" />
+                            <aura:set attribute="else">
+                                <lightning:verticalNavigationItem label="{!item.label }" name="{!item.name }" />
+                            </aura:set>
+                        </aura:if>
+                    </aura:iteration>
+                </lightning:verticalNavigationSection>
+            </aura:iteration>
+        </lightning:verticalNavigation> 
+</aura:component>

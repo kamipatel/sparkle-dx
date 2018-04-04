@@ -1,0 +1,6 @@
+<design:component >
+    <design:attribute name="header" label="Tree Header" default=""/>   
+    <design:attribute name="parentObjStr" label="Parent Object API name" default="Account"/>   
+    <design:attribute name="childObjStr" label="Child Object API name" default="Contact"/>   
+    <design:attribute name="relationship" label="Relationship API Name" default="AccountId"/>
+</design:component>
