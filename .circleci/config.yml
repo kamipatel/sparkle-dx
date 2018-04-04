@@ -47,16 +47,6 @@ job-definition: &jobdef
                 mkdir ~/tests
                 mkdir ~/tests/apex
                 node_modules/sfdx-cli/bin/run force:apex:test:run -u scratch -c -r human -d ~/tests/apex -w 9999
-        - run:
-            name: Run Lightning Tests
-            command: | 
-                mkdir ~/tests/lightning
-                node_modules/sfdx-cli/bin/run force:lightning:test:run -d ~/tests/lightning -r human -a septaTrainsTests.app -o
-        - run: 
-            name: Push to Codecov.io
-            command: |
-                cp ~/tests/apex/test-result-codecoverage.json .
-                bash <(curl -s https://codecov.io/bash)
         - run: 
             name: Clean Up
             when: always
