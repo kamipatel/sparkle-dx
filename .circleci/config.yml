@@ -93,7 +93,7 @@ jobs:
   build-developer: 
      <<: *jobdef
      environment:
-        SCRATCH_DEF: developer.json
+        SCRATCH_DEF: project-scratch-def.json
 workflows:
   version: 2
   test_and_static:
