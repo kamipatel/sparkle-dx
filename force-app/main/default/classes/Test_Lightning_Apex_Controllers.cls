@@ -177,7 +177,6 @@ private class Test_Lightning_Apex_Controllers {
         
 		Test.stopTest();
 		*/
-		
 	}
 
 	@isTest static void testInstallScript() {
